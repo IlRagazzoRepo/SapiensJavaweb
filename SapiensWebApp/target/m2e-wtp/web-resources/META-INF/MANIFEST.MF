@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Built-By: nacho8th
+Build-Jdk: 1.8.0_181
+Implementation-Title: SapiensWebApp
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.javaweb
+Implementation-Vendor: JoinFaces
+Created-By: Maven Integration for Eclipse
+

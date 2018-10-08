@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:f="http://java.sun.com/jsf/core">
+
+      
+<h:head>
+  <title>Inquiry List</title>
+</h:head>
+
+<h:body>
+<h:form>
+<p:dataTable var="inquiry" value="#{inquiryController.getInquiriesSortedByLastName()}">
+	<f:facet name="header">
+        Inquiry List
+    </f:facet>
+	<p:column headerText="Id">
+      <h:outputText value="#{inquiry.id}" />
+    </p:column>
+
+    <p:column headerText="First Name">
+      <h:outputText value="#{inquiry.firstName}" />
+    </p:column>
+
+    <p:column headerText="Last Name" sortBy="#{inquiry.lastName}">
+      <h:outputText value="#{inquiry.lastName}" />
+    </p:column>
+
+    <p:column headerText="Email">
+      <h:outputText value="#{inquiry.email}" />
+    </p:column>
+    
+    <p:column headerText="Inquiry/Comments">
+      <h:outputText counter="counter" value="#{inquiry.inquiry}" />
+    </p:column>
+    
+    <p:column headerText="Amount of Characters">
+      <h:outputText counter="counter" value="#{counterController.countChars(inquiry.inquiry)}" />
+    </p:column>
+    
+    <p:column headerText="Recomendations">
+      <h:outputText value="#{inquiry.recomendations}" />
+    </p:column>
+    <p:column headerText="Time Stamp">
+      <h:outputText value="#{inquiry.timeStamp}" />
+    </p:column>
+	<p:column headerText="Options">
+		<h:commandLink value="Delete" action="#{inquiryController.deleteInquiry(inquiry)}" onclick="return confirm('Are you sure?')"></h:commandLink>|
+		<h:commandLink value="Edit" action="#{inquiryController.editInquiry(inquiry)}"></h:commandLink>
+	</p:column>
+</p:dataTable>
+</h:form>
+<p:link value="Add Inquiry" outcome="#{inquiryController.addInquiry()}"></p:link>
+</h:body>
+</html>

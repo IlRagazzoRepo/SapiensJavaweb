@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+  <title>Edit Inquiry</title>
+</h:head>
+<h:body>
+<h:form>
+    <p:panel id="panel" header="Edit Inquiry" style="margin-bottom:10px;">
+        <h:panelGrid id="grid" columns="2" cellpadding="5">
+	        <p:outputLabel for="firstname" value="First Name:" />
+			<p:inputText id="firstname" value="#{inquiryController.inquiry.firstName}"></p:inputText>
+			
+			<p:outputLabel for="lastname" value="Last Name:" />
+			<p:inputText id="lastname" value="#{inquiryController.inquiry.lastName}"></p:inputText>
+			
+			<p:outputLabel for="email" value="Email:" />
+			<p:inputText id="email" value="#{inquiryController.inquiry.email}" validatorMessage="Invalid email format">
+			 <f:validateRegex
+					pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+			</p:inputText>
+			
+			<p:outputLabel for="inquiry" value="Inquiry/Comment:" />
+			  <p:inputText id="inquiry" value="#{inquiryController.inquiry.inquiry}" required="true">
+			</p:inputText>
+			
+			<p:outputLabel for="recomendations" value="Recomendation:" />
+			<p:inputTextarea rows="3" cols="60" counter="counter" maxlength="150"
+			counterTemplate="{0} characters remaining" autoResize="false" id="recomendations" 
+			value="#{inquiryController.inquiry.recomendations}" required="true"></p:inputTextarea>
+			
+			<h:outputText id="counter"/>
+			 
+			<f:facet name="footer" style="background: white;">
+			   <p:message for="inquiry" display="text" /><br/>
+			   <p:message for="recomendations" display="text" /><br/>
+			   <p:message for="email" />
+			</f:facet>
+			 
+        </h:panelGrid>
+        <p:commandButton value="Save Changes" action="#{inquiryController.editInquiry()}"  onclick="return confirm('Are you sure?')" update="grid" />
+    </p:panel>
+</h:form>
+</h:body>
+
+</html>
